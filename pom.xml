@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.example</groupId>
+	<groupId>eu.h2020.symbiote</groupId>
 	<artifactId>coreConfig-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>coreConfig-service</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Microservices main config application</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -57,6 +57,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>
