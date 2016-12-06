@@ -14,7 +14,7 @@ apply plugin: 'java'
 apply plugin: 'spring-boot'
 
 jar {
-    baseName = 'coreConfig-service'
+    baseName = 'CoreConfigService'
     version = '0.0.1-SNAPSHOT'
 }
 
