@@ -1,6 +1,7 @@
 buildscript {
     ext {
-        springBootVersion = '1.4.1.RELEASE'
+        springBootVersion = '1.5.12.RELEASE'
+        springCloudVersion = 'Dalston.SR5'
     }
     repositories {
         mavenCentral()
@@ -30,6 +31,6 @@ dependencies {
 
 dependencyManagement {
     imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Camden.RELEASE"
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
     }
 }
