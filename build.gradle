@@ -14,9 +14,13 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'spring-boot'
 
+// Needed for docker
+apply plugin: 'maven-publish'
+
+
 jar {
     baseName = 'CoreConfigService'
-    version = '0.0.1-SNAPSHOT'
+    version = project.version
 }
 
 repositories {
@@ -34,3 +38,39 @@ dependencyManagement {
         mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
     }
 }
+
+bootRepackage {
+    classifier = 'run'
+}
+
+task generateJavaDocs(type: Javadoc) {
+    source = sourceSets.main.allJava
+    destinationDir = reporting.file("javadocs")
+}
+
+    task javadocJar(type: Jar, dependsOn: generateJavaDocs) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+    task sourceJar(type: Jar) {
+        from sourceSets.main.allJava
+    }
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                groupId = project.group
+                version = project.version
+                from components.java
+                artifact sourceJar {
+                    classifier "sources"
+                }
+                // artifact javadocJar
+                artifact(file("$libsDir/$project.name-$project.version-${bootRepackage.classifier}.jar")) {
+                    classifier "run"
+                }
+            }
+        }
+    }
+    publishToMavenLocal.dependsOn(bootRepackage)
+// <<<< Needed for docker
+
